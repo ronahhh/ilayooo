@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Girlfriend?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: pink;
+        }
+        .question {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            margin-bottom: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .hidden {
+            display: none;
+        }
+        .animation-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .heart, .flower, .crying-face {
+            position: absolute;
+            bottom: -100px;
+            width: 50px;
+            height: 50px;
+            opacity: 0.8;
+            animation: float 5s infinite;
+        }
+        .heart {
+            background: url('https://example.com/heart.png') no-repeat center/contain;
+        }
+        .flower {
+            background: url('https://example.com/flower.png') no-repeat center/contain;
+        }
+        .crying-face {
+            background: url('https://example.com/crying-face.png') no-repeat center/contain;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100vh); }
+        }
+    </style>
+</head>
+<body>
+    <div class="question">Hi baby, Can I be your girlfriend please?</div>
+    <div class="buttons">
+        <button class="btn" onclick="showAnimation('yes')">Yes</button>
+        <button class="btn" onclick="showAnimation('no')">No</button>
+    </div>
+    <div id="animation-container" class="animation-container hidden"></div>
+
+    <script>
+        function showAnimation(answer) {
+            document.querySelector('.question').classList.add('hidden');
+            document.querySelector('.buttons').classList.add('hidden');
+            const container = document.getElementById('animation-container');
+            container.classList.remove('hidden');
+            container.innerHTML = ''; // Clear previous animations
+
+            if (answer === 'yes') {
+                for (let i = 0; i < 20; i++) {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart');
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.animationDelay = Math.random() * 5 + 's';
+                    container.appendChild(heart);
+
+                    const flower = document.createElement('div');
+                    flower.classList.add('flower');
+                    flower.style.left = Math.random() * 100 + 'vw';
+                    flower.style.animationDelay = Math.random() * 5 + 's';
+                    container.appendChild(flower);
+                }
+            } else {
+                for (let i = 0; i < 20; i++) {
+                    const cryingFace = document.createElement('div');
+                    cryingFace.classList.add('crying-face');
+                    cryingFace.style.left = Math.random() * 100 + 'vw';
+                    cryingFace.style.animationDelay = Math.random() * 5 + 's';
+                    container.appendChild(cryingFace);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
